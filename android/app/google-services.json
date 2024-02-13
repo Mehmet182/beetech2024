@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "137975673562",
+    "project_id": "deneme-mehmet-a04f4",
+    "storage_bucket": "deneme-mehmet-a04f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137975673562:android:c419142b801b3b08e96be3",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHTe2zt4sKqw6K7yI_UQv1pAGgc4CctAg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
