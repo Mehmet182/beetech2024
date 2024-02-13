@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/anasayfa_%C3%BCr%C3%BCn_widget.dart';
+import 'package:flutter_application_1/modeller/urun_model.dart';
 //import 'package:flutter_application_1/firebase_options.dart';
 //import 'package:flutter_application_1/package.flutter/anasayfa_urun_widget2.dart';
 import 'package:flutter_application_1/package.flutter/category_widget.dart';
@@ -669,43 +670,39 @@ class home_page extends StatelessWidget {
 
             const SizedBox(height: 16),
             // ekran kaydırma varsayılan aşağı yukarı
-            const SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(1.0),
-                    child: AnasayfaUrunWidget(
-                      resimAdresi: "varliklar/shoes1.png",
-                      baslik: "black snikears",
-                      usdfiyat: 90,
-                      IndirimOrani: 80,
-                      iconAdresi: "varliklar/Rating Icon.png",
-                      derece: 4.4,
+            FutureBuilder(
+              future: FirebaseFirestore.instance.collection('products').get(),
+              builder: (_, snapshot) {
+                if (snapshot.hasData) {
+                  final urunler = snapshot.data!.docs
+                      .map((e) => UrunModel.fromFirestore(e.data(), e.id));
+
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (final urun in urunler)
+                          Padding(
+                            padding: EdgeInsets.all(1.0),
+                            child: AnasayfaUrunWidget(urun: urun),
+                          ),
+                        /*
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: AnasayfaUrunWidget(urun: urun)),
+                        ),
+                       Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: AnasayfaUrunWidget(urun:UrunModel),
+                        ),
+                        */
+                      ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/shoes2.png",
-                        baslik: "adidas snikears",
-                        usdfiyat: 50,
-                        IndirimOrani: 30,
-                        iconAdresi: "varliklar/Rating Icon.png",
-                        derece: 4.2),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/shoes3.jpeg",
-                        baslik: "adidas snikears",
-                        usdfiyat: 50,
-                        IndirimOrani: 30,
-                        iconAdresi: "varliklar/Rating Icon.png",
-                        derece: 4.6),
-                  ),
-                ],
-              ),
+                  );
+                }
+                ;
+                return Center(child: CircularProgressIndicator());
+              },
             ),
             //****************
             //*************** */ */
@@ -809,36 +806,18 @@ class home_page extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Padding(
+                  /*  Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/shirt.jpeg",
-                        baslik: "Allen Solly Regular fit cotton shirt",
-                        usdfiyat: 90,
-                        IndirimOrani: 80,
-                        iconAdresi: "varliklar/Rating Icon.png",
-                        derece: 4.4),
+                    child: AnasayfaUrunWidget(urun:UrunModel),
                   ),
                   Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/shirt2.jpeg",
-                        baslik: "Calvin Clein Regular fit slim fit shirt",
-                        usdfiyat: 50,
-                        IndirimOrani: 30,
-                        iconAdresi: "varliklar/Rating Icon.png",
-                        derece: 4.6),
+                    child: AnasayfaUrunWidget(urun:UrunModel),
                   ),
                   Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: AnasayfaUrunWidget(
-                        resimAdresi: "varliklar/shirt3.jpeg",
-                        baslik: "Allen Solly Regular fit cotton shirt",
-                        usdfiyat: 50,
-                        IndirimOrani: 30,
-                        iconAdresi: "varliklar/Rating Icon.png",
-                        derece: 4.2),
-                  ),
+                    child: AnasayfaUrunWidget(urun:UrunModel),
+                  ),*/
                 ],
               ),
             ),

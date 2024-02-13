@@ -1,24 +1,11 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/modeller/urun_model.dart';
 
 class AnasayfaUrunWidget extends StatefulWidget {
-  const AnasayfaUrunWidget({
-    super.key,
-    required this.baslik,
-    required this.IndirimOrani,
-    required this.resimAdresi,
-    required this.usdfiyat,
-    required this.iconAdresi,
-    required this.derece,
-  });
+  const AnasayfaUrunWidget({super.key, required this.urun});
 
-  final String baslik;
-  final String resimAdresi;
-  final String iconAdresi;
-  final double usdfiyat;
-  final double IndirimOrani;
-  final double derece;
-
+  final UrunModel urun;
   @override
   State createState() => _AnasayfaUrunWidgetState();
 }
@@ -46,8 +33,8 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
         children: [
           Stack(
             children: [
-              Image.asset(
-                widget.resimAdresi,
+              Image.network(
+                widget.urun.resimAdresi,
                 width: MediaQuery.of(context).size.width * 0.45,
                 height: MediaQuery.of(context).size.height * 0.4,
               ),
@@ -80,7 +67,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
             ],
           ),
           Text(
-            widget.baslik,
+            widget.urun.baslik,
             style: TextStyle(
               fontSize: 17, /*fontWeight: FontWeight.bold*/
             ),
@@ -90,7 +77,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
           Row(
             children: [
               Text(
-                "\$${widget.usdfiyat}",
+                "\$${widget.urun.fiyatUSD}",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(width: 5),
@@ -100,7 +87,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                     decoration: TextDecoration.lineThrough, color: Colors.red),
               ),
               SizedBox(width: 8),
-              Text("${widget.IndirimOrani}% OFF"),
+              Text("${widget.urun.derece}% OFF"),
             ],
           ),
           //SizedBox(width: 8),
@@ -109,13 +96,13 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
               Padding(
                 padding: const EdgeInsets.only(left: 0, bottom: 0),
                 child: Image.asset(
-                  widget.iconAdresi,
+                  widget.urun.iconAdresi,
                   width: 17.5,
                   height: 17.5,
                 ),
               ),
               SizedBox(width: 8),
-              Text("${widget.derece}"),
+              Text("${widget.urun.derece}"),
             ],
           ),
         ],
