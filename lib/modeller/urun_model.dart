@@ -11,9 +11,9 @@ class UrunModel {
     required this.uid,
     required this.baslik,
     required this.resimAdresi,
+    required this.iconAdresi,
     required this.fiyatUSD,
     required this.indirimOrani,
-    required this.iconAdresi,
     required this.derece,
   });
 
@@ -21,10 +21,10 @@ class UrunModel {
     return UrunModel(
       uid: uid,
       baslik: map['title'],
+      iconAdresi: map['iconUrl'],
       resimAdresi: map['imageUrl'],
       fiyatUSD: map['price'],
       indirimOrani: map['discountRatio'],
-      iconAdresi: map['iconUrl'],
       derece: map['derece'],
     );
   }

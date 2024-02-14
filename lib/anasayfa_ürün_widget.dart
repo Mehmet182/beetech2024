@@ -50,7 +50,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                   child: Container(
                     width: 45,
                     height: 45,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromARGB(
                           255, 254, 225, 225), // Arka plan rengini ayarlar
                       shape: BoxShape.circle, // Daire şeklini ayarlar
@@ -68,7 +68,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
           ),
           Text(
             widget.urun.baslik,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 17, /*fontWeight: FontWeight.bold*/
             ),
           ),
@@ -78,15 +78,16 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
             children: [
               Text(
                 "\$${widget.urun.fiyatUSD}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              SizedBox(width: 5),
-              Text(
+              const SizedBox(width: 5),
+              const Text(
                 "\$136",
                 style: TextStyle(
                     decoration: TextDecoration.lineThrough, color: Colors.red),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text("${widget.urun.derece}% OFF"),
             ],
           ),
@@ -101,7 +102,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                   height: 17.5,
                 ),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text("${widget.urun.derece}"),
             ],
           ),

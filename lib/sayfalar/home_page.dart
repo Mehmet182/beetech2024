@@ -139,7 +139,7 @@ class home_page extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -683,7 +683,7 @@ class home_page extends StatelessWidget {
                       children: [
                         for (final urun in urunler)
                           Padding(
-                            padding: EdgeInsets.all(1.0),
+                            padding: const EdgeInsets.all(1.0),
                             child: AnasayfaUrunWidget(urun: urun),
                           ),
                         /*
@@ -700,8 +700,7 @@ class home_page extends StatelessWidget {
                     ),
                   );
                 }
-                ;
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               },
             ),
             //****************
