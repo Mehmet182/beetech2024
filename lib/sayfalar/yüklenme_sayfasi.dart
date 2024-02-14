@@ -15,7 +15,7 @@ class yuklenmesayfasi extends StatelessWidget {
           final girisyapildi = snapshot.hasData && snapshot.data != null;
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: girisyapildi ? home_page() : GirisSayfasi(),
+            home: girisyapildi ? const home_page() : const GirisSayfasi(),
           );
         });
   }
