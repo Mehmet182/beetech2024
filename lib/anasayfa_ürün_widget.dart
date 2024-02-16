@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/modeller/urun_model.dart';
 
@@ -26,8 +28,13 @@ bool favoriMi = false;
 // accses modifier _ -> private demek
 class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
   bool _isFavorited = false;
+  //bool _isCartAdded = false;
+
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
+    final userDoc =
+        FirebaseFirestore.instance.collection('users').doc(user.uid);
     return Card(
       child: Column(
         children: [
@@ -51,11 +58,9 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                     width: 45,
                     height: 45,
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(
-                          255, 254, 225, 225), // Arka plan rengini ayarlar
-                      shape: BoxShape.circle, // Daire şeklini ayarlar
+                      color: Color.fromARGB(255, 254, 225, 225),
+                      shape: BoxShape.circle,
                     ),
-                    // ),
                     child: Icon(
                       Icons.favorite,
                       color: _isFavorited ? Colors.red : Colors.white,
@@ -64,16 +69,45 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                   ),
                 ),
               ),
+              Positioned.fill(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: StreamBuilder(
+                      stream: userDoc.snapshots(),
+                      builder: (_, snapshot) {
+                        if (snapshot.hasData) {
+                          final List cartArray = snapshot.data!['cart'] ?? [];
+                          final inCart = cartArray.contains(widget.urun.uid);
+
+                          return IconButton(
+                            onPressed: () {
+                              if (inCart) {
+                                userDoc.update({
+                                  'cart':
+                                      FieldValue.arrayRemove([widget.urun.uid])
+                                });
+                              } else {
+                                userDoc.update({
+                                  'cart':
+                                      FieldValue.arrayUnion([widget.urun.uid])
+                                });
+                              }
+                            },
+                            icon: inCart
+                                ? const Icon(Icons.shopping_bag)
+                                : const Icon(Icons.shopping_bag_outlined),
+                          );
+                        }
+                        return Center(child: CircularProgressIndicator());
+                      }),
+                ),
+              ),
             ],
           ),
           Text(
             widget.urun.baslik,
-            style: const TextStyle(
-              fontSize: 17, /*fontWeight: FontWeight.bold*/
-            ),
+            style: const TextStyle(fontSize: 17),
           ),
-          //*******************
-          //****************** */ */
           Row(
             children: [
               Text(
@@ -92,7 +126,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
             ],
           ),
           //SizedBox(width: 8),
-          Row(
+          /*  Row(
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 0, bottom: 0),
@@ -106,6 +140,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
               Text("${widget.urun.derece}"),
             ],
           ),
+          */
         ],
       ),
     );
