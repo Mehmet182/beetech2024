@@ -98,7 +98,7 @@ class _AnasayfaUrunWidgetState extends State<AnasayfaUrunWidget> {
                                 : const Icon(Icons.shopping_bag_outlined),
                           );
                         }
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       }),
                 ),
               ),

@@ -59,7 +59,7 @@ class SepetButtonWidget extends StatelessWidget {
                     if (cartArray.isEmpty) return const SizedBox();
 
                     return Container(
-                      padding: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         color: Colors.red,
                         shape: BoxShape.circle,
@@ -67,7 +67,7 @@ class SepetButtonWidget extends StatelessWidget {
                       ),
                       child: Text(
                         "${cartArray.length}",
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     );
                   }

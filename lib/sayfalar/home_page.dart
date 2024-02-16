@@ -15,8 +15,8 @@ import 'package:flutter_application_1/par%C3%A7alar/app_draver.dart';
 import 'package:flutter_application_1/par%C3%A7alar/sepet_button_widget.dart';
 //import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-class home_page extends StatelessWidget {
-  const home_page({Key? key}) : super(key: key);
+class Home_Page extends StatelessWidget {
+  const Home_Page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

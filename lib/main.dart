@@ -13,7 +13,7 @@ import 'package:flutter_application_1/par%C3%A7alar/anasayfa_%C3%BCr%C3%BCn_widg
 import 'package:flutter_application_1/firebase_options.dart';
 //import 'package:flutter_application_1/package.flutter/anasayfa_urun_widget2.dart';
 import 'package:flutter_application_1/par%C3%A7alar/category_widget.dart';
-import 'package:flutter_application_1/sayfalar/y%C3%BCklenme_sayfasi.dart';
+import 'package:flutter_application_1/sayfalar/yuklenme_sayfasi.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 Future<void> main() async {
@@ -37,5 +37,5 @@ Future<void> main() async {
   options: DefaultFirebaseOptions.currentPlatform,
 );
 */
-  runApp(const yuklenmesayfasi());
+  runApp(const Yuklenme_Sayfasi());
 }

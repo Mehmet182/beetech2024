@@ -1,8 +1,6 @@
-//import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/sayfalar/kayit_sayfas,.dart';
+import 'package:flutter_application_1/sayfalar/kayit_sayfasi.dart';
 
 class GirisSayfasi extends StatefulWidget {
   const GirisSayfasi({super.key});
@@ -105,7 +103,9 @@ class _GirisSayfasiState extends State<GirisSayfasi> {
                       email: _email,
                       password: _sifre,
                     )
-                        .catchError(
+                        .then((userCredential) {
+                      // Kullanıcı başarıyla giriş yaptı
+                    }).catchError(
                       (hataMesaji) {
                         _hataMesaji = hataMesaji.toString();
                         _yukleniyor = false;

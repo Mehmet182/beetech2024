@@ -4,8 +4,8 @@ import "package:flutter/material.dart";
 import "package:flutter_application_1/sayfalar/giri%C5%9F_sayfasi.dart";
 import "package:flutter_application_1/sayfalar/home_page.dart";
 
-class yuklenmesayfasi extends StatelessWidget {
-  const yuklenmesayfasi({super.key});
+class Yuklenme_Sayfasi extends StatelessWidget {
+  const Yuklenme_Sayfasi({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class yuklenmesayfasi extends StatelessWidget {
           final girisyapildi = snapshot.hasData && snapshot.data != null;
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            home: girisyapildi ? const home_page() : const GirisSayfasi(),
+            home: girisyapildi ? const Home_Page() : const GirisSayfasi(),
           );
         });
   }
